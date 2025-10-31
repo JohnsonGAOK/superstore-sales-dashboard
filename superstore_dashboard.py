@@ -8,11 +8,10 @@ Professional Retail Business Data Visualization Platform
 - Streamlit: Web 应用框架
 - Plotly: 交互式图表
 - Pandas: 数据处理
-- PyGWalker: 拖拽式探索
 - SciPy: 高级统计分析
 
 作者 | Author: AI Data Analytics
-版本 | Version: 1.0
+版本 | Version: 1.1 (性能优化版)
 """
 
 import streamlit as st
@@ -305,7 +304,6 @@ LANGUAGES = {
         'data_table': '📋 Detailed Data Table',
         'download_data': 'Download Filtered Data (CSV)',
         'advanced_stats': '📊 Advanced Statistical Analysis',
-        'interactive_explorer': '🎨 Interactive Data Explorer (PyGWalker)',
         # 地图 | Map
         'geo_distribution': '🗺️ Geographic Sales Distribution',
         # 数据来源 | Data Source
@@ -341,7 +339,6 @@ LANGUAGES = {
         'data_table': '📋 詳細數據表',
         'download_data': '下載篩選數據 (CSV)',
         'advanced_stats': '📊 高級統計分析',
-        'interactive_explorer': '🎨 交互式數據探索器 (PyGWalker)',
         'geo_distribution': '🗺️ 地理銷售分布',
         'data_source_title': '📊 數據來源',
         'data_source_text': '數據集來自 Kaggle: <a href="https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting/data" target="_blank" style="color: #FF6F00; font-weight: bold;">Superstore 銷售預測數據集</a>',
@@ -375,8 +372,7 @@ LANGUAGES = {
         'data_table': '📋 详细数据表',
         'download_data': '下载筛选数据 (CSV)',
         'advanced_stats': '📊 高级统计分析',
-        'interactive_explorer': '🎨 交互式数据探索器 (PyGWalker)',
-        'geo_distribution': '🗺️ 地理销售分布',
+        'geo_distribution': '�地理销售分布',
         'data_source_title': '📊 数据来源',
         'data_source_text': '数据集来自 Kaggle: <a href="https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting/data" target="_blank" style="color: #FF6F00; font-weight: bold;">Superstore 销售预测数据集</a>',
     }
@@ -864,52 +860,6 @@ with st.expander(f"📊 {t['advanced_stats']}", expanded=False):
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ========================================
-# PyGWalker 交互式探索 (可折叠) | PyGWalker Interactive Explorer
-# ========================================
-with st.expander(f"🎨 {t['interactive_explorer']}", expanded=False):
-    st.markdown("""
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                padding: 20px; border-radius: 10px; color: white; margin-bottom: 20px;">
-        <h4 style="color: white; margin-top: 0;">💡 PyGWalker Quick Start Guide</h4>
-        <ul style="margin-bottom: 0;">
-            <li>🖱️ <b>Drag Fields</b>: From left panel to X/Y/Color/Size areas</li>
-            <li>📊 <b>Change Chart</b>: Click chart type icons (bar/line/scatter/pie)</li>
-            <li>🎨 <b>Customize</b>: Adjust colors, sizes, filters in right panel</li>
-            <li>💾 <b>Auto-Save</b>: Your configurations save automatically</li>
-        </ul>
-        <p style="margin-bottom: 0; margin-top: 10px;">
-            💡 <b>Try This</b>: Sales (Y-axis) × Category (X-axis) × Region (Color)
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    try:
-        from pygwalker.api.streamlit import StreamlitRenderer
-        
-        # 准备 PyGWalker 数据 | Prepare PyGWalker data
-        pygwalker_df = filtered_df[[
-            'Order Date', 'Category', 'Sub-Category', 'Region', 
-            'Segment', 'Ship Mode', 'Sales', 'Customer Name', 'State'
-        ]].copy()
-        
-        # 初始化渲染器 | Initialize renderer
-        pyg_html = StreamlitRenderer(
-            pygwalker_df,
-            spec="./gw_config.json",
-            use_kernel_calc=True
-        )
-        
-        # 显示探索器 | Display explorer
-        pyg_html.explorer()
-        
-    except ImportError:
-        st.warning("⚠️ PyGWalker not installed. Run: `pip install pygwalker>=0.4.9`")
-    except Exception as e:
-        st.error(f"❌ PyGWalker loading error: {e}")
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-# ========================================
 # 业务洞察卡片 | Business Insights Cards
 # ========================================
 st.markdown(f"### {t['insights_title']}")
@@ -1030,8 +980,8 @@ st.markdown(f"""
 st.markdown("---")
 st.markdown("""
 <div style="text-align: center; color: #7F8C8D; padding: 20px;">
-    <p><b>🛒 Superstore Sales Dashboard</b> | Version 1.0</p>
-    <p>Built with ❤️ using Streamlit, Plotly, Pandas & PyGWalker</p>
+    <p><b>🛒 Superstore Sales Dashboard</b> | Version 1.1 (Performance Optimized)</p>
+    <p>Built with ❤️ using Streamlit, Plotly, Pandas & SciPy</p>
     <p>💼 Professional BI Solution for Small & Medium Enterprises</p>
 </div>
 """, unsafe_allow_html=True)
