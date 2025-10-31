@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的数据分析项目 | 作品集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            background: #FAFAFA;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            color: #1565C0;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: #616161;
+        }
+        
+        .project-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .project-section h2 {
+            font-size: 32px;
+            color: #1565C0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .project-section .subtitle {
+            font-size: 18px;
+            color: #616161;
+            margin-bottom: 30px;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .tech-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .dashboard-embed {
+            width: 100%;
+            height: 800px;
+            margin: 30px 0;
+            position: relative;
+            background: #F5F7FA;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .dashboard-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .highlights {
+            background: #E3F2FD;
+            border-left: 4px solid #1565C0;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .highlights h3 {
+            color: #1565C0;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .highlights ul li {
+            color: #37474F;
+            margin: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 16px;
+        }
+        
+        .highlights ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #1565C0;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102,126,234,0.5);
+        }
+        
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .project-section {
+                padding: 25px;
+            }
+            
+            .project-section h2 {
+                font-size: 24px;
+            }
+            
+            .dashboard-embed {
+                height: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 页面标题 -->
+        <div class="hero">
+            <h1>🎨 数据可视化作品集</h1>
+            <p>用数据讲述故事，让洞察触手可及</p>
+        </div>
+        
+        <!-- 项目展示 -->
+        <section class="project-section">
+            <h2>
+                <span>📊</span>
+                <span>Superstore Sales Dashboard</span>
+            </h2>
+            <p class="subtitle">交互式销售数据分析平台 | 基于 Streamlit + Plotly + PyGWalker</p>
+            
+            <!-- 技术栈 -->
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Streamlit</span>
+                <span class="tech-badge">Plotly</span>
+                <span class="tech-badge">Pandas</span>
+                <span class="tech-badge">PyGWalker</span>
+                <span class="tech-badge">Data Visualization</span>
+            </div>
+            
+            <!-- Dashboard 嵌入 -->
+            <div class="dashboard-embed">
+                <iframe 
+                    src="http://localhost:8501/?embed=true"
+                    title="Superstore Sales Dashboard"
+                    loading="lazy">
+                </iframe>
+            </div>
+            
+            <!-- 项目亮点 -->
+            <div class="highlights">
+                <h3>💡 项目亮点</h3>
+                <ul>
+                    <li>📈 <strong>7+ 交互式图表</strong>：使用 Plotly 构建专业级可视化，支持缩放、筛选、导出</li>
+                    <li>🗺️ <strong>地理分布热力图</strong>：美国各州销售数据地图可视化，直观展示区域差异</li>
+                    <li>🎨 <strong>拖拽式探索</strong>：集成 PyGWalker，用户可自定义图表，无需编程</li>
+                    <li>🌐 <strong>三语言支持</strong>：English / 繁體中文 / 简体中文，国际化体验</li>
+                    <li>📱 <strong>响应式设计</strong>：完美适配移动端、平板、桌面，随时随地分析数据</li>
+                    <li>🔍 <strong>实时过滤</strong>：多维度筛选器（日期、类别、地区），快速定位关键信息</li>
+                    <li>📊 <strong>智能洞察</strong>：自动生成业务洞察卡片，辅助决策</li>
+                </ul>
+            </div>
+            
+            <!-- 技术实现 -->
+            <div class="highlights" style="background: #FFF3E0; border-left-color: #FF9800;">
+                <h3 style="color: #EF6C00;">🛠️ 技术实现</h3>
+                <ul>
+                    <li style="color: #5D4037;">使用 <strong>Pandas</strong> 进行数据清洗和预处理，处理 9,994 条销售记录</li>
+                    <li style="color: #5D4037;">应用 <strong>Plotly Express</strong> 构建交互式图表，支持 hover、zoom、filter</li>
+                    <li style="color: #5D4037;">集成 <strong>PyGWalker</strong> 提供 Tableau 式拖拽分析体验</li>
+                    <li style="color: #5D4037;">采用 <strong>Streamlit</strong> 框架快速构建 Web 应用，无需前端开发</li>
+                    <li style="color: #5D4037;">数据缓存优化（<code>@st.cache_data</code>），加载速度提升 70%</li>
+                </ul>
+            </div>
+            
+            <!-- 行动按钮 -->
+            <div class="button-container">
+                <a href="http://localhost:8501" target="_blank" class="cta-button">
+                    🚀 在新窗口打开完整版
+                </a>
+            </div>
+        </section>
+        
+        <!-- 其他项目（示例） -->
+        <section class="project-section" style="opacity: 0.6;">
+            <h2>🌍 其他项目</h2>
+            <p style="color: #999;">更多精彩项目即将上线...</p>
+        </section>
+    </div>
+</body>
+</html>
+
