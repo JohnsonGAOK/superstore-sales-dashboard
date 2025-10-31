@@ -43,38 +43,38 @@ st.markdown("""
     background-color: #F5F7FA;
 }
 
-/* 指标卡片美化 | Metric Card Styling - 浅色高级感 */
+/* 指标卡片美化 | Metric Card Styling - 浅色高级感（紧凑版）*/
 [data-testid="stMetric"] {
     background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
-    padding: 18px 20px;
-    border-radius: 12px;
+    padding: 12px 16px;
+    border-radius: 10px;
     border: 1px solid #90CAF9;
     box-shadow: 0 2px 8px rgba(33, 150, 243, 0.12);
     transition: all 0.3s ease;
 }
 
 [data-testid="stMetric"]:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba(33, 150, 243, 0.18);
 }
 
 [data-testid="stMetric"] label {
     color: #1565C0 !important;
     font-weight: 600 !important;
-    font-size: 13px !important;
+    font-size: 11px !important;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 [data-testid="stMetric"] [data-testid="stMetricValue"] {
     color: #0D47A1 !important;
-    font-size: 26px !important;
+    font-size: 22px !important;
     font-weight: 700 !important;
 }
 
 [data-testid="stMetric"] [data-testid="stMetricDelta"] {
     color: #1976D2 !important;
-    font-size: 12px !important;
+    font-size: 11px !important;
 }
 
 /* 图表容器美化 | Chart Container Styling */
@@ -467,12 +467,12 @@ if selected_segment != t['all']:
 # ========================================
 # 主标题与副标题 | Main Title & Subtitle
 # ========================================
-# 使用更紧凑的标题样式，减少空白
+# 使用更紧凑的标题样式，与侧边栏按钮对齐
 st.markdown(f"""
-<h1 style="margin-top: -20px; margin-bottom: 5px; font-size: 32px; color: #1565C0;">
+<h1 style="margin-top: -60px; margin-bottom: 2px; font-size: 28px; color: #1565C0;">
     {t['title']}
 </h1>
-<p style="margin-top: 0; margin-bottom: 15px; font-size: 16px; color: #616161; font-weight: 500;">
+<p style="margin-top: 0; margin-bottom: 8px; font-size: 14px; color: #616161; font-weight: 500;">
     {t['subtitle']}
 </p>
 """, unsafe_allow_html=True)
@@ -568,7 +568,7 @@ with col_left:
         labels={'Total Sales': 'Sales ($)'}
     )
     
-    geo_fig.update_layout(**get_plotly_layout("", height=450))
+    geo_fig.update_layout(**get_plotly_layout("", height=380))
     geo_fig.update_geos(
         showcountries=False,
         showsubunits=True,
@@ -597,7 +597,7 @@ with col_right:
         hovertemplate='<b>%{x}</b><br>Sales: $%{y:,.2f}<extra></extra>'
     ))
     
-    trend_fig.update_layout(**get_plotly_layout("", height=450))
+    trend_fig.update_layout(**get_plotly_layout("", height=380))
     trend_fig.update_xaxes(tickangle=-45)
     st.plotly_chart(trend_fig, use_container_width=True)
 
