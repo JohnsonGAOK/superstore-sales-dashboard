@@ -1,224 +1,203 @@
-# 🌐 Dashboard 嵌入个人网站方案对比
-
-## 📊 快速决策表
-
-| 需求场景 | 推荐方案 | 时间成本 | 费用 | 难度 |
-|---------|---------|---------|------|------|
-| **个人作品集展示** | Streamlit Cloud + iFrame | 5分钟 | 免费 | ⭐ |
-| **技术博客文章** | Streamlit Cloud + 区域嵌入 | 10分钟 | 免费 | ⭐ |
-| **商业项目** | 自托管服务器 + iFrame | 1-2小时 | $5-10/月 | ⭐⭐⭐⭐ |
-| **企业内部使用** | Docker + 自定义域名 | 2-3小时 | $10-50/月 | ⭐⭐⭐⭐⭐ |
+# 🌐 Dashboard Embedding Options (EN/中文)
 
 ---
 
-## ✅ 方案 1：Streamlit Cloud + iFrame（强烈推荐）
+**Languages:** [**English**](#-english-version) | [**中文**](#-中文版)
 
-### 适合人群
+---
+
+## 🇬🇧 English Version
+
+### 📊 Quick Decision Table
+
+| Use Case                      | Recommended Method         | Time Cost | Monthly Cost | Difficulty |
+|-------------------------------|----------------------------|-----------|--------------|------------|
+| **Personal Portfolio**        | Streamlit Cloud + iFrame   | 5 mins    | Free         | ⭐          |
+| **Technical Blog Post**       | Streamlit Cloud + Section Embed | 10 mins   | Free         | ⭐          |
+| **Commercial Project**        | Self-Hosted Server + iFrame| 1-2 hours | $5-10/mo     | ⭐⭐⭐⭐      |
+| **Internal Enterprise Use**   | Docker + Custom Domain     | 2-3 hours | $10-50/mo    | ⭐⭐⭐⭐⭐    |
+
+---
+
+### ✅ Method 1: Streamlit Cloud + iFrame (Highly Recommended)
+
+**Best for**:
+- 🎓 Student Portfolios
+- 👨‍💻 Personal Tech Blogs
+- 🚀 Quick Demos
+- 💼 Freelancers
+
+**Pros**:
+- ✅ **Completely Free** (via Streamlit Community Cloud)
+- ✅ **5-Minute Deployment** (no server or domain needed)
+- ✅ **Automatic HTTPS**
+- ✅ **Syncs with GitHub for Updates**
+- ✅ **Zero Maintenance**
+- ✅ **Global CDN** (fast access speeds)
+
+**Cons**:
+- ⚠️ Includes Streamlit branding
+- ⚠️ URL is a `*.streamlit.app` subdomain
+- ⚠️ Resource limitations (CPU/RAM)
+
+**Implementation Steps**:
+```bash
+# 1. Push code to GitHub (1 min)
+./deploy_to_github.sh
+
+# 2. Deploy on Streamlit Cloud (2 mins)
+# Visit https://share.streamlit.io/, select repo, and deploy.
+
+# 3. Embed on your site (2 mins)
+# Copy the HTML and replace the dashboard URL.
+<iframe src="https://your-app.streamlit.app/?embed=true"></iframe>
+```
+
+---
+
+### ✅ Method 2: Self-Hosted Server + iFrame
+
+**Best for**:
+- 🏢 Small to Medium Businesses
+- 🔒 Data Privacy Requirements
+- 💼 Commercial Projects
+- 🎨 Full Customization Needs
+
+**Pros**:
+- ✅ **No Branding** (full control)
+- ✅ **Custom Domain** (e.g., dashboard.yourcompany.com)
+- ✅ **No Resource Limits** (depends on server specs)
+- ✅ **Data is Fully Private**
+- ✅ **Can Add Access Control** (password protection)
+
+**Cons**:
+- ❌ Requires a server ($5-10/month)
+- ❌ Requires domain and SSL configuration
+- ❌ Requires technical maintenance
+- ❌ Longer deployment time (1-2 hours)
+
+---
+
+### ❌ Method 3: Export as Static HTML (Not Recommended)
+
+**Why it doesn't work**:
+- ❌ Streamlit is a dynamic web app that relies on a Python backend.
+- ❌ It cannot be fully exported as a single, static HTML file.
+- ❌ Interactive features like filters and PyGWalker will not function.
+
+---
+
+### 🎯 Which Method Should I Choose?
+
+#### Scenario 1: Personal Portfolio / Tech Blog
+**Recommendation**: ✅ **Streamlit Cloud + iFrame**
+**Reason**: It's free, fast, and requires no maintenance. It's perfect for showcasing your technical skills.
+
+#### Scenario 2: Commercial Project / Client Demo
+**Recommendation**: ✅ **Self-Hosted Server + Custom Domain**
+**Reason**: It offers a professional image with no third-party branding, uses your own domain, and keeps data private.
+
+#### Scenario 3: Internal Enterprise Use
+**Recommendation**: ✅ **Docker + Intranet Deployment**
+**Reason**: Data never leaves the company's internal network, ensuring maximum security and reliability.
+
+---
+<br>
+
+## 🇨🇳 中文版
+
+### 📊 快速决策表
+
+| 需求场景         | 推荐方案                   | 时间成本 | 费用      | 难度   |
+|------------------|----------------------------|----------|-----------|--------|
+| **个人作品集展示** | Streamlit Cloud + iFrame   | 5分钟    | 免费      | ⭐      |
+| **技术博客文章**   | Streamlit Cloud + 区域嵌入 | 10分钟   | 免费      | ⭐      |
+| **商业项目**     | 自托管服务器 + iFrame      | 1-2小时  | $5-10/月  | ⭐⭐⭐⭐   |
+| **企业内部使用**   | Docker + 自定义域名        | 2-3小时  | $10-50/月 | ⭐⭐⭐⭐⭐ |
+
+---
+
+### ✅ 方案 1：Streamlit Cloud + iFrame（强烈推荐）
+
+**适合人群**：
 - 🎓 学生作品集
 - 👨‍💻 个人技术博客
 - 🚀 快速 Demo 展示
 - 💼 自由职业者
 
-### 优点
-✅ **完全免费**（Streamlit Community Cloud）  
-✅ **5分钟部署**（无需服务器、域名）  
-✅ **自动 HTTPS**（安全连接）  
-✅ **GitHub 同步**（推送代码自动更新）  
-✅ **零运维成本**（Streamlit 官方管理）  
-✅ **全球 CDN 加速**（访问速度快）
+**优点**：
+- ✅ **完全免费**（通过 Streamlit Community Cloud）
+- ✅ **5分钟部署**（无需服务器、域名）
+- ✅ **自动 HTTPS**（安全连接）
+- ✅ **GitHub 同步**（推送代码自动更新）
+- ✅ **零运维成本**（Streamlit 官方管理）
+- ✅ **全球 CDN 加速**（访问速度快）
 
-### 缺点
-⚠️ 有 Streamlit 品牌水印  
-⚠️ URL 是 `*.streamlit.app`  
-⚠️ 有资源限制（CPU/RAM/存储）  
-⚠️ 免费版有访问量限制
+**缺点**：
+- ⚠️ 有 Streamlit 品牌水印
+- ⚠️ URL 是 `*.streamlit.app` 子域名
+- ⚠️ 有资源限制（CPU/RAM/存储）
 
-### 实施步骤
+**实施步骤**：
 ```bash
 # 1. 推送代码到 GitHub（1分钟）
 ./deploy_to_github.sh
 
 # 2. 在 Streamlit Cloud 部署（2分钟）
-# 访问 https://share.streamlit.io/
-# 点击 "New app" → 选择仓库 → Deploy
+# 访问 https://share.streamlit.io/，选择仓库并部署。
 
 # 3. 嵌入到网站（2分钟）
-# 复制 HTML 代码，替换 Dashboard URL
+# 复制 HTML 代码，并替换为您的 Dashboard URL。
 <iframe src="https://your-app.streamlit.app/?embed=true"></iframe>
 ```
 
-### 成本分析
-| 项目 | 费用 |
-|------|------|
-| GitHub 账号 | 免费 |
-| Streamlit Cloud | 免费 |
-| 网站服务器 | 您现有的 |
-| **总计** | **$0/月** |
-
-### 适用网站类型
-- 静态网站（HTML/CSS/JS）
-- WordPress / Wix / Squarespace
-- React / Vue / Next.js
-- 个人博客（Hexo / Hugo / Jekyll）
-
 ---
 
-## ✅ 方案 2：自托管服务器 + iFrame
+### ✅ 方案 2：自托管服务器 + iFrame
 
-### 适合人群
+**适合人群**：
 - 🏢 中小企业
 - 🔒 需要数据隐私
 - 💼 商业项目
 - 🎨 需要完全自定义
 
-### 优点
-✅ **无品牌水印**（完全控制）  
-✅ **自定义域名**（dashboard.yourcompany.com）  
-✅ **无资源限制**（根据服务器配置）  
-✅ **数据完全私有**（不上传第三方）  
-✅ **可添加访问控制**（密码保护）  
-✅ **可定制功能**（修改源码）
+**优点**：
+- ✅ **无品牌水印**（完全控制）
+- ✅ **自定义域名**（例如: dashboard.yourcompany.com）
+- ✅ **无资源限制**（取决于服务器配置）
+- ✅ **数据完全私有**（不上传至第三方）
+- ✅ **可添加访问控制**（密码保护）
 
-### 缺点
-❌ 需要购买服务器（$5-10/月）  
-❌ 需要配置域名和 SSL  
-❌ 需要技术维护（更新、监控）  
-❌ 部署时间较长（1-2小时）
-
-### 实施步骤
-
-#### 方式 A：使用 VPS（推荐）
-
-**推荐服务商**：
-- DigitalOcean ($5/月)
-- Linode ($5/月)
-- Vultr ($5/月)
-- AWS Lightsail ($3.5/月)
-
-**步骤**：
-```bash
-# 1. 创建 VPS（Ubuntu 22.04）
-# 2. 连接到服务器
-ssh root@YOUR_SERVER_IP
-
-# 3. 安装依赖
-sudo apt update && sudo apt install python3-pip python3-venv git nginx -y
-
-# 4. 克隆代码
-git clone https://github.com/YOUR_USERNAME/superstore-dashboard.git
-cd superstore-dashboard
-
-# 5. 安装依赖并运行
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-streamlit run superstore_dashboard.py --server.port 8501
-
-# 6. 配置 Nginx 反向代理（可选）
-# 7. 配置域名和 SSL（可选）
-```
-
-#### 方式 B：使用 Docker（推荐给有经验者）
-
-```bash
-# 1. 在服务器安装 Docker
-curl -fsSL https://get.docker.com -o get-docker.sh
-sh get-docker.sh
-
-# 2. 构建并运行
-cd superstore-dashboard
-docker build -t dashboard .
-docker run -d -p 8501:8501 --name dashboard dashboard
-
-# 3. 访问
-http://YOUR_SERVER_IP:8501
-```
-
-### 成本分析
-| 项目 | 费用 |
-|------|------|
-| VPS 服务器 | $5-10/月 |
-| 域名（可选） | $10-15/年 |
-| SSL 证书 | 免费（Let's Encrypt） |
-| **总计** | **$5-11/月** |
+**缺点**：
+- ❌ 需要购买服务器（$5-10/月）
+- ❌ 需要配置域名和 SSL
+- ❌ 需要技术维护（更新、监控）
+- ❌ 部署时间较长（1-2小时）
 
 ---
 
-## ❌ 方案 3：导出静态 HTML（不推荐）
+### ❌ 方案 3：导出静态 HTML（不推荐）
 
-### 为什么不推荐？
-
-**Streamlit 特性限制**：
-- ❌ Streamlit 是动态 Web 应用，依赖 Python 后端
-- ❌ 无法完整导出为单个 HTML 文件
-- ❌ PyGWalker 等交互组件需要后端支持
-- ❌ 过滤器和实时更新功能会失效
-
-**替代方案**：
-如果您确实需要静态 HTML，可以考虑：
-1. **Plotly + 纯 HTML/JS**（需要重写代码）
-2. **Dash + dash-bootstrap-components**（可导出静态页面）
-3. **Observable Notebook**（Web 端交互式笔记本）
+**为什么不推荐？**
+- ❌ Streamlit 是一个依赖 Python 后端的动态 Web 应用。
+- ❌ 它无法被完整导出为单个静态 HTML 文件。
+- ❌ 诸如过滤器和 PyGWalker 等交互功能会失效。
 
 ---
 
-## 🎯 我应该选择哪个方案？
+### 🎯 我应该选择哪个方案？
 
-### 场景 1：个人作品集 / 技术博客
-
+#### 场景 1：个人作品集 / 技术博客
 **推荐**：✅ **Streamlit Cloud + iFrame**
+**理由**：免费、快速、无需运维，足以展示您的技术能力。
 
-**理由**：
-- 免费且快速
-- 无需运维
-- 自动更新
-- 足够展示技术能力
-
-**实施**：
-```bash
-# 5分钟快速部署
-cd superstore_dashboard
-./deploy_to_github.sh
-
-# 按提示操作，然后在 share.streamlit.io 部署
-# 复制 embed_examples/fullscreen.html 到您的网站
-```
-
----
-
-### 场景 2：商业项目 / 客户 Demo
-
+#### 场景 2：商业项目 / 客户 Demo
 **推荐**：✅ **自托管服务器 + 自定义域名**
+**理由**：无品牌水印，形象专业；使用自有域名，品牌一致性强；数据私有，安全可控。
 
-**理由**：
-- 无品牌水印（专业形象）
-- 自定义域名（品牌一致性）
-- 完全控制（数据私有）
-- 可添加访问控制
-
-**实施**：
-```bash
-# 参考 DEPLOYMENT_GUIDE.md 的"云服务器部署"章节
-# 预计时间：1-2 小时
-```
-
----
-
-### 场景 3：企业内部使用
-
+#### 场景 3：企业内部使用
 **推荐**：✅ **Docker + 内网部署**
-
-**理由**：
-- 数据不出公司内网
-- 稳定可靠
-- 易于扩展
-- 可集成 SSO 认证
-
-**实施**：
-```bash
-# 参考 DEPLOYMENT_GUIDE.md 的"Docker 容器化部署"章节
-# 预计时间：2-3 小时
-```
+**理由**：数据不出公司内网，安全性最高；稳定可靠，易于扩展。
 
 ---
 

@@ -1,132 +1,126 @@
-# 🌐 部署指南 | Deployment Guide
+# 🌐 Deployment Guide (EN/中文)
 
-本文档详细说明如何将 Superstore Sales Dashboard 部署到生产环境,并嵌入到公司官网。
-
----
-
-## 📋 目录 | Table of Contents
-
-1. [本地部署](#1-本地部署--local-deployment)
-2. [Streamlit Community Cloud (免费)](#2-streamlit-community-cloud-免费推荐)
-3. [嵌入到公司官网](#3-嵌入到公司官网)
-4. [Docker 容器化部署](#4-docker-容器化部署)
-5. [云服务器部署](#5-云服务器部署aws-gcp-azure)
-6. [自定义域名配置](#6-自定义域名配置)
-7. [安全性与访问控制](#7-安全性与访问控制)
+This document provides detailed instructions on how to deploy the Superstore Sales Dashboard to a production environment and embed it into a company website.
 
 ---
 
-## 1. 本地部署 | Local Deployment
+**Languages:** [**English**](#-english-version) | [**中文**](#-中文版)
 
-### 快速启动 (推荐)
+---
+
+## English Version
+
+### 📋 Table of Contents
+
+1.  [Local Deployment](#1-local-deployment)
+2.  [Streamlit Community Cloud (Free, Recommended)](#2-streamlit-community-cloud-free-recommended)
+3.  [Embedding in a Company Website](#3-embedding-in-a-company-website)
+4.  [Docker Containerization](#4-docker-containerization)
+5.  [Cloud Server Deployment (AWS, GCP, Azure)](#5-cloud-server-deployment-aws-gcp-azure)
+6.  [Custom Domain Configuration](#6-custom-domain-configuration)
+7.  [Security & Access Control](#7-security--access-control)
+
+---
+
+### 1. Local Deployment
+
+#### Quick Start (Recommended)
 ```bash
 cd superstore_dashboard
 chmod +x start.sh
 ./start.sh
 ```
 
-### 手动启动
+#### Manual Start
 ```bash
-# 激活虚拟环境
+# Activate the virtual environment
 source venv/bin/activate
 
-# 启动应用
+# Launch the app
 streamlit run superstore_dashboard.py --server.port 8501
 ```
 
-### 自定义端口
+#### Custom Port
 ```bash
 streamlit run superstore_dashboard.py --server.port 8888
 ```
 
 ---
 
-## 2. Streamlit Community Cloud (免费,推荐)
+### 2. Streamlit Community Cloud (Free, Recommended)
 
-**最适合**: 作品集展示、客户Demo、初创公司
+**Best for**: Portfolio showcases, client demos, startups.
 
-### 步骤
+#### Steps
 
-#### Step 1: 准备GitHub仓库
+**Step 1: Prepare your GitHub Repository**
 ```bash
-# 在GitHub上创建新仓库 (例: superstore-dashboard)
+# Create a new repository on GitHub (e.g., superstore-dashboard)
 
-# 初始化Git
+# Initialize Git in your local project
 cd superstore_dashboard
 git init
 git add .
 git commit -m "Initial commit: Superstore Sales Dashboard"
 
-# 连接远程仓库
+# Connect to the remote repository
 git remote add origin https://github.com/YOUR_USERNAME/superstore-dashboard.git
 git branch -M main
 git push -u origin main
 ```
 
-#### Step 2: 部署到Streamlit Cloud
-1. 访问 [share.streamlit.io](https://share.streamlit.io/)
-2. 使用GitHub账号登录
-3. 点击 "New app"
-4. 选择您的仓库: `YOUR_USERNAME/superstore-dashboard`
-5. 设置:
-   - **Main file path**: `superstore_dashboard.py`
-   - **App URL** (自定义): `your-company-sales-dashboard`
-6. 点击 "Deploy!"
+**Step 2: Deploy to Streamlit Cloud**
+1.  Visit [share.streamlit.io](https://share.streamlit.io/).
+2.  Log in with your GitHub account.
+3.  Click "New app".
+4.  Select your repository: `YOUR_USERNAME/superstore-dashboard`.
+5.  Configure the settings:
+    -   **Main file path**: `superstore_dashboard.py`
+    -   **App URL** (custom): `your-company-sales-dashboard`
+6.  Click "Deploy!".
 
-#### Step 3: 等待部署完成 (约2-3分钟)
-部署完成后,您将获得一个公开链接:
+**Step 3: Wait for Deployment (approx. 2-3 minutes)**
+Once deployed, you will get a public link:
 ```
 https://your-company-sales-dashboard.streamlit.app
 ```
 
-### 优点
-✅ **完全免费** (每月有一定配额)  
-✅ **自动HTTPS** (安全加密)  
-✅ **GitHub同步** (推送代码自动更新)  
-✅ **无需运维** (Streamlit官方管理)
+#### Advantages
+✅ **Completely Free** (with a monthly quota)
+✅ **Automatic HTTPS** (secure encryption)
+✅ **GitHub Sync** (pushing code triggers auto-updates)
+✅ **Zero Maintenance** (managed by the Streamlit team)
 
-### 缺点
-❌ 有Streamlit品牌水印  
-❌ 有资源限制 (CPU/内存)  
-❌ URL是 `*.streamlit.app` 域名
+#### Disadvantages
+❌ Streamlit branding watermark
+❌ Resource limitations (CPU/Memory)
+❌ URL is a `*.streamlit.app` subdomain
 
 ---
 
-## 3. 嵌入到公司官网
+### 3. Embedding in a Company Website
 
-### 方法 A: iFrame 嵌入 (最简单)
+#### Method A: iFrame Embedding (Easiest)
 
-**适用场景**: 已有官网,想快速添加Dashboard页面
+**Use case**: You already have a website and want to quickly add a dashboard page.
 
-#### HTML代码
+**HTML Code**
 ```html
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>销售数据分析 | Your Company</title>
+    <title>Sales Analytics | Your Company</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        .dashboard-container {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        .dashboard-container { width: 100%; height: 100vh; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
     <div class="dashboard-container">
-        <!-- 替换为您的Dashboard链接 -->
+        <!-- Replace with your dashboard URL -->
         <iframe 
             src="https://your-company-sales-dashboard.streamlit.app/?embed=true"
             title="Sales Dashboard"
@@ -138,9 +132,9 @@ https://your-company-sales-dashboard.streamlit.app
 </html>
 ```
 
-#### 集成到现有网站 (WordPress/Wix/Squarespace)
+**Integration with Existing Sites (WordPress/Wix/Squarespace)**
 ```html
-<!-- 在页面中添加以下代码块 -->
+<!-- Add the following code block to your page -->
 <div style="width: 100%; height: 800px;">
     <iframe 
         src="https://your-dashboard.streamlit.app/?embed=true"
@@ -150,22 +144,20 @@ https://your-company-sales-dashboard.streamlit.app
 </div>
 ```
 
-### 方法 B: 导航链接
-
-在官网导航栏添加一个链接:
+#### Method B: Navigation Link
+Add a link to your website's navigation bar:
 ```html
 <nav>
-    <a href="https://www.yourcompany.com">首页</a>
-    <a href="https://www.yourcompany.com/about">关于我们</a>
-    <a href="https://your-dashboard.streamlit.app" target="_blank">数据分析</a>
-    <a href="https://www.yourcompany.com/contact">联系我们</a>
+    <a href="https://www.yourcompany.com">Home</a>
+    <a href="https://www.yourcompany.com/about">About Us</a>
+    <a href="https://your-dashboard.streamlit.app" target="_blank">Data Analytics</a>
+    <a href="https://www.yourcompany.com/contact">Contact</a>
 </nav>
 ```
 
-### 方法 C: 弹出窗口
-
+#### Method C: Popup Window
 ```html
-<button onclick="openDashboard()">查看销售分析</button>
+<button onclick="openDashboard()">View Sales Analytics</button>
 
 <script>
 function openDashboard() {
@@ -180,46 +172,45 @@ function openDashboard() {
 
 ---
 
-## 4. Docker 容器化部署
+### 4. Docker Containerization
 
-**适用场景**: 需要在自己的服务器上运行,保证数据隐私
+**Use case**: Running on your own server to ensure data privacy.
 
-### Dockerfile
-在项目根目录创建 `Dockerfile`:
-
+#### Dockerfile
+Create a `Dockerfile` in the project root:
 ```dockerfile
-# 使用官方Python基础镜像
+# Use the official Python base image
 FROM python:3.9-slim
 
-# 设置工作目录
+# Set the working directory
 WORKDIR /app
 
-# 安装系统依赖
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# 复制依赖文件
+# Copy the requirements file
 COPY requirements.txt .
 
-# 安装Python依赖
+# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 复制应用代码
+# Copy the application code
 COPY . .
 
-# 暴露端口
+# Expose the port
 EXPOSE 8501
 
-# 健康检查
+# Health check
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
-# 启动命令
+# Start command
 ENTRYPOINT ["streamlit", "run", "superstore_dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
 ```
 
-### docker-compose.yml
+#### docker-compose.yml
 ```yaml
 version: '3.8'
 
@@ -237,60 +228,59 @@ services:
     restart: unless-stopped
 ```
 
-### 构建与运行
+#### Build and Run
 ```bash
-# 构建镜像
+# Build the image
 docker build -t superstore-dashboard .
 
-# 运行容器
+# Run the container
 docker run -d -p 8501:8501 --name dashboard superstore-dashboard
 
-# 或使用 docker-compose
+# Or use docker-compose
 docker-compose up -d
 ```
 
-### 访问
+#### Access
 ```
 http://YOUR_SERVER_IP:8501
 ```
 
 ---
 
-## 5. 云服务器部署(AWS, GCP, Azure)
+### 5. Cloud Server Deployment (AWS, GCP, Azure)
 
-### 以 AWS EC2 为例
+#### Example using AWS EC2
 
-#### Step 1: 创建EC2实例
+**Step 1: Create an EC2 Instance**
 - **AMI**: Ubuntu 22.04 LTS
-- **实例类型**: t3.small (2 vCPU, 2GB RAM)
-- **安全组**: 开放 8501 端口
+- **Instance Type**: t3.small (2 vCPUs, 2GB RAM)
+- **Security Group**: Open port 8501
 
-#### Step 2: 连接到服务器
+**Step 2: Connect to the Server**
 ```bash
 ssh -i your-key.pem ubuntu@YOUR_EC2_IP
 ```
 
-#### Step 3: 安装依赖
+**Step 3: Install Dependencies**
 ```bash
-# 更新系统
+# Update the system
 sudo apt update && sudo apt upgrade -y
 
-# 安装Python和Git
+# Install Python and Git
 sudo apt install python3-pip python3-venv git -y
 
-# 克隆代码
+# Clone the code
 git clone https://github.com/YOUR_USERNAME/superstore-dashboard.git
 cd superstore-dashboard
 
-# 创建虚拟环境并安装依赖
+# Create a virtual environment and install dependencies
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-#### Step 4: 使用 systemd 设置开机自启
-
-创建服务文件 `/etc/systemd/system/dashboard.service`:
+**Step 4: Set up Auto-start with systemd**
+Create a service file at `/etc/systemd/system/dashboard.service`:
 ```ini
 [Unit]
 Description=Superstore Sales Dashboard
@@ -306,8 +296,7 @@ ExecStart=/home/ubuntu/superstore-dashboard/venv/bin/streamlit run superstore_da
 [Install]
 WantedBy=multi-user.target
 ```
-
-启动服务:
+Start the service:
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable dashboard
@@ -315,8 +304,7 @@ sudo systemctl start dashboard
 sudo systemctl status dashboard
 ```
 
-#### Step 5: 配置Nginx反向代理 (可选,推荐)
-
+**Step 5: Configure Nginx as a Reverse Proxy (Optional, Recommended)**
 ```nginx
 server {
     listen 80;
@@ -332,41 +320,40 @@ server {
     }
 }
 ```
-
-重启Nginx:
+Restart Nginx:
 ```bash
 sudo systemctl restart nginx
 ```
 
 ---
 
-## 6. 自定义域名配置
+### 6. Custom Domain Configuration
 
-### 场景: 将 `dashboard.yourcompany.com` 指向Dashboard
+**Scenario**: Pointing `dashboard.yourcompany.com` to your dashboard.
 
-#### Step 1: 添加DNS记录
-在您的域名服务商 (例如: GoDaddy, Cloudflare) 添加 A 记录:
-
+**Step 1: Add a DNS Record**
+In your domain provider's settings (e.g., GoDaddy, Cloudflare), add an A record:
 ```
-类型: A
-主机: dashboard
-值: YOUR_SERVER_IP
-TTL: 自动
+Type: A
+Host: dashboard
+Value: YOUR_SERVER_IP
+TTL: Automatic
 ```
 
-#### Step 2: 配置SSL证书 (Let's Encrypt)
+**Step 2: Configure SSL Certificate (Let's Encrypt)**
 ```bash
-# 安装Certbot
+# Install Certbot
 sudo apt install certbot python3-certbot-nginx -y
 
-# 获取证书
+# Obtain the certificate
 sudo certbot --nginx -d dashboard.yourcompany.com
 
-# 自动续期
+# Test auto-renewal
 sudo certbot renew --dry-run
 ```
 
-#### Step 3: 更新Nginx配置
+**Step 3: Update Nginx Configuration**
+Certbot will automatically update your Nginx config to look like this:
 ```nginx
 server {
     listen 443 ssl http2;
@@ -387,40 +374,37 @@ server {
 
 ---
 
-## 7. 安全性与访问控制
+### 7. Security & Access Control
 
-### 添加基础认证 (HTTP Basic Auth)
+#### Adding Basic Authentication
 
-#### 方法 A: Nginx层面
+**Method A: At the Nginx Level**
 ```bash
-# 创建密码文件
+# Create a password file
 sudo apt install apache2-utils -y
 sudo htpasswd -c /etc/nginx/.htpasswd admin
 ```
-
-Nginx配置:
+Nginx config:
 ```nginx
 location / {
     auth_basic "Restricted Access";
     auth_basic_user_file /etc/nginx/.htpasswd;
     
     proxy_pass http://localhost:8501;
-    # ... 其他配置
+    # ... other proxy settings
 }
 ```
 
-#### 方法 B: Streamlit应用层面
-
-安装 `streamlit-authenticator`:
+**Method B: At the Streamlit App Level**
+Install `streamlit-authenticator`:
 ```bash
 pip install streamlit-authenticator
 ```
-
-在 `superstore_dashboard.py` 开头添加:
+Add this to the beginning of `superstore_dashboard.py`:
 ```python
 import streamlit_authenticator as stauth
 
-# 用户配置
+# User configuration
 names = ['John Doe', 'Jane Smith']
 usernames = ['jdoe', 'jsmith']
 passwords = ['password1', 'password2']
@@ -438,62 +422,544 @@ authenticator = stauth.Authenticate(
 
 name, authentication_status, username = authenticator.login('Login', 'main')
 
-if authentication_status == False:
-    st.error('Username/password is incorrect')
-    st.stop()
-elif authentication_status == None:
-    st.warning('Please enter your username and password')
+if not authentication_status:
+    st.error('Username/password is incorrect' if username else 'Please enter your username and password')
     st.stop()
 
-# ... 其余Dashboard代码
+# ... rest of the dashboard code
+st.write(f'Welcome *{name}*')
+# ...
 ```
 
 ---
 
-## 📊 部署方案对比
+### 📊 Deployment Options Comparison
 
-| 方案 | 成本 | 难度 | 速度 | 自定义度 | 推荐场景 |
-|-----|------|------|------|---------|---------|
-| **Streamlit Cloud** | 免费 | ⭐ | 最快 | 低 | 作品集、Demo |
-| **iFrame嵌入** | 免费 | ⭐ | 极快 | 中 | 快速集成 |
-| **Docker本地** | 免费 | ⭐⭐⭐ | 中 | 高 | 内部使用 |
-| **AWS/GCP/Azure** | $10-50/月 | ⭐⭐⭐⭐ | 中 | 极高 | 生产环境 |
-| **自定义域名+SSL** | $15-80/月 | ⭐⭐⭐⭐⭐ | 慢 | 极高 | 企业级 |
+| Option              | Cost         | Difficulty | Speed    | Customization | Recommended Use Case    |
+|---------------------|--------------|------------|----------|---------------|-------------------------|
+| **Streamlit Cloud** | Free         | ⭐          | Fastest  | Low           | Portfolio, Demo         |
+| **iFrame Embed**    | Free         | ⭐          | Very Fast| Medium        | Quick Integration       |
+| **Docker (Local)**  | Free         | ⭐⭐⭐       | Medium   | High          | Internal Use            |
+| **AWS/GCP/Azure**   | $10-50/month | ⭐⭐⭐⭐     | Medium   | Very High     | Production Environment  |
+| **Custom Domain**   | $15-80/month | ⭐⭐⭐⭐⭐   | Slow     | Very High     | Enterprise-grade        |
 
 ---
 
-## ✅ 部署检查清单
+### ✅ Deployment Checklist
+
+Before deploying, confirm:
+- [ ] All dependencies are listed in `requirements.txt`.
+- [ ] Data file paths are correct.
+- [ ] Sensitive info (passwords, API keys) is managed via environment variables.
+- [ ] The necessary ports are open in the firewall/security group.
+- [ ] An SSL certificate is configured for production.
+- [ ] The mobile responsive layout has been tested.
+- [ ] Access control is implemented if needed.
+
+---
+
+### 🆘 Common Deployment Issues
+
+**Q1: Streamlit Cloud shows "Error loading app".**
+**A**: Check if `requirements.txt` includes all dependencies and ensure Python version compatibility (3.8-3.10 recommended).
+
+**Q2: iFrame embed appears blank.**
+**A**: Ensure the dashboard URL includes the `?embed=true` parameter and that both the website and dashboard use HTTPS.
+
+**Q3: Docker container is inaccessible.**
+**A**: Check port mapping (`-p 8501:8501`) and firewall settings (`sudo ufw allow 8501`).
+
+**Q4: WebSocket connection fails behind Nginx reverse proxy.**
+**A**: Make sure the Nginx config includes `proxy_set_header Upgrade` and `Connection "upgrade"`.
+
+---
+
+### 📞 Need Help?
+
+If you encounter any issues during deployment, feel free to contact technical support.
+
+---
+
+<div align="center">
+
+**🚀 Happy Deploying!**
+
+*Make Your Dashboard Live, Empower Your Business*
+
+</div>
+
+---
+<br>
+
+## 🇨🇳 中文版
+
+### 📋 目录
+
+1.  [本地部署](#1-本地部署)
+2.  [Streamlit Community Cloud (免费, 推荐)](#2-streamlit-community-cloud-免费-推荐)
+3.  [嵌入到公司官网](#3-嵌入到公司官网)
+4.  [Docker 容器化部署](#4-docker-容器化部署)
+5.  [云服务器部署 (AWS, GCP, Azure)](#5-云服务器部署-aws-gcp-azure)
+6.  [自定义域名配置](#6-自定义域名配置)
+7.  [安全性与访问控制](#7-安全性与访问控制)
+
+---
+
+### 1. 本地部署
+
+#### 快速启动 (推荐)
+```bash
+cd superstore_dashboard
+chmod +x start.sh
+./start.sh
+```
+
+#### 手动启动
+```bash
+# 激活虚拟环境
+source venv/bin/activate
+
+# 启动应用
+streamlit run superstore_dashboard.py --server.port 8501
+```
+
+#### 自定义端口
+```bash
+streamlit run superstore_dashboard.py --server.port 8888
+```
+
+---
+
+### 2. Streamlit Community Cloud (免费, 推荐)
+
+**最适合**: 作品集展示、客户 Demo、初创公司。
+
+#### 步骤
+
+**第 1 步: 准备 GitHub 仓库**
+```bash
+# 在 GitHub 上创建新仓库 (例如: superstore-dashboard)
+
+# 在本地项目中初始化 Git
+cd superstore_dashboard
+git init
+git add .
+git commit -m "Initial commit: Superstore Sales Dashboard"
+
+# 连接远程仓库
+git remote add origin https://github.com/YOUR_USERNAME/superstore-dashboard.git
+git branch -M main
+git push -u origin main
+```
+
+**第 2 步: 部署到 Streamlit Cloud**
+1.  访问 [share.streamlit.io](https://share.streamlit.io/)。
+2.  使用 GitHub 账号登录。
+3.  点击 "New app"。
+4.  选择您的仓库: `YOUR_USERNAME/superstore-dashboard`。
+5.  配置设置:
+    -   **Main file path**: `superstore_dashboard.py`
+    -   **App URL** (自定义): `your-company-sales-dashboard`
+6.  点击 "Deploy!"。
+
+**第 3 步: 等待部署完成 (约 2-3 分钟)**
+部署完成后，您将获得一个公开链接:
+```
+https://your-company-sales-dashboard.streamlit.app
+```
+
+#### 优点
+✅ **完全免费** (每月有一定配额)
+✅ **自动 HTTPS** (安全加密)
+✅ **GitHub 同步** (推送代码自动更新)
+✅ **无需运维** (Streamlit 官方管理)
+
+#### 缺点
+❌ 有 Streamlit 品牌水印
+❌ 有资源限制 (CPU/内存)
+❌ URL 是 `*.streamlit.app` 子域名
+
+---
+
+### 3. 嵌入到公司官网
+
+#### 方法 A: iFrame 嵌入 (最简单)
+
+**适用场景**: 已有官网，想快速添加 Dashboard 页面。
+
+**HTML 代码**
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>销售数据分析 | 您的公司</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+        .dashboard-container { width: 100%; height: 100vh; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 替换为您的 Dashboard 链接 -->
+        <iframe 
+            src="https://your-company-sales-dashboard.streamlit.app/?embed=true"
+            title="销售仪表板"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+</body>
+</html>
+```
+
+**集成到现有网站 (WordPress/Wix/Squarespace)**
+```html
+<!-- 在页面中添加以下代码块 -->
+<div style="width: 100%; height: 800px;">
+    <iframe 
+        src="https://your-dashboard.streamlit.app/?embed=true"
+        style="width: 100%; height: 100%; border: none; border-radius: 10px;"
+        title="销售仪表板">
+    </iframe>
+</div>
+```
+
+#### 方法 B: 导航链接
+在官网导航栏添加一个链接:
+```html
+<nav>
+    <a href="https://www.yourcompany.com">首页</a>
+    <a href="https://www.yourcompany.com/about">关于我们</a>
+    <a href="https://your-dashboard.streamlit.app" target="_blank">数据分析</a>
+    <a href="https://www.yourcompany.com/contact">联系我们</a>
+</nav>
+```
+
+#### 方法 C: 弹出窗口
+```html
+<button onclick="openDashboard()">查看销售分析</button>
+
+<script>
+function openDashboard() {
+    window.open(
+        'https://your-dashboard.streamlit.app',
+        'Dashboard',
+        'width=1400,height=900,menubar=no,toolbar=no,location=no'
+    );
+}
+</script>
+```
+
+---
+
+### 4. Docker 容器化部署
+
+**适用场景**: 在自己的服务器上运行，保证数据隐私。
+
+#### Dockerfile
+在项目根目录创建 `Dockerfile`:
+```dockerfile
+# 使用官方 Python 基础镜像
+FROM python:3.9-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 安装系统依赖
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# 复制依赖文件
+COPY requirements.txt .
+
+# 安装 Python 依赖
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 复制应用代码
+COPY . .
+
+# 暴露端口
+EXPOSE 8501
+
+# 健康检查
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+
+# 启动命令
+ENTRYPOINT ["streamlit", "run", "superstore_dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+```
+
+#### docker-compose.yml
+```yaml
+version: '3.8'
+
+services:
+  dashboard:
+    build: .
+    container_name: superstore_dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./superstore_data.csv:/app/superstore_data.csv
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+    restart: unless-stopped
+```
+
+#### 构建与运行
+```bash
+# 构建镜像
+docker build -t superstore-dashboard .
+
+# 运行容器
+docker run -d -p 8501:8501 --name dashboard superstore-dashboard
+
+# 或使用 docker-compose
+docker-compose up -d
+```
+
+#### 访问
+```
+http://您的服务器IP:8501
+```
+
+---
+
+### 5. 云服务器部署 (AWS, GCP, Azure)
+
+#### 以 AWS EC2 为例
+
+**第 1 步: 创建 EC2 实例**
+- **AMI**: Ubuntu 22.04 LTS
+- **实例类型**: t3.small (2 vCPU, 2GB RAM)
+- **安全组**: 开放 8501 端口
+
+**第 2 步: 连接到服务器**
+```bash
+ssh -i your-key.pem ubuntu@您的EC2公网IP
+```
+
+**第 3 步: 安装依赖**
+```bash
+# 更新系统
+sudo apt update && sudo apt upgrade -y
+
+# 安装 Python 和 Git
+sudo apt install python3-pip python3-venv git -y
+
+# 克隆代码
+git clone https://github.com/YOUR_USERNAME/superstore-dashboard.git
+cd superstore-dashboard
+
+# 创建虚拟环境并安装依赖
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+**第 4 步: 使用 systemd 设置开机自启**
+创建服务文件 `/etc/systemd/system/dashboard.service`:
+```ini
+[Unit]
+Description=Superstore Sales Dashboard
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/superstore-dashboard
+Environment="PATH=/home/ubuntu/superstore-dashboard/venv/bin"
+ExecStart=/home/ubuntu/superstore-dashboard/venv/bin/streamlit run superstore_dashboard.py --server.port 8501 --server.headless true
+
+[Install]
+WantedBy=multi-user.target
+```
+启动服务:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable dashboard
+sudo systemctl start dashboard
+sudo systemctl status dashboard
+```
+
+**第 5 步: 配置 Nginx 反向代理 (可选, 推荐)**
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+
+    location / {
+        proxy_pass http://localhost:8501;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+重启 Nginx:
+```bash
+sudo systemctl restart nginx
+```
+
+---
+
+### 6. 自定义域名配置
+
+**场景**: 将 `dashboard.yourcompany.com` 指向您的 Dashboard。
+
+**第 1 步: 添加 DNS 记录**
+在您的域名服务商 (例如: GoDaddy, Cloudflare) 添加 A 记录:
+```
+类型: A
+主机: dashboard
+值: 您的服务器IP
+TTL: 自动
+```
+
+**第 2 步: 配置 SSL 证书 (Let's Encrypt)**
+```bash
+# 安装 Certbot
+sudo apt install certbot python3-certbot-nginx -y
+
+# 获取证书
+sudo certbot --nginx -d dashboard.yourcompany.com
+
+# 测试自动续期
+sudo certbot renew --dry-run
+```
+
+**第 3 步: 更新 Nginx 配置**
+Certbot 会自动更新您的 Nginx 配置，使其类似于:
+```nginx
+server {
+    listen 443 ssl http2;
+    server_name dashboard.yourcompany.com;
+
+    ssl_certificate /etc/letsencrypt/live/dashboard.yourcompany.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/dashboard.yourcompany.com/privkey.pem;
+
+    location / {
+        proxy_pass http://localhost:8501;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+    }
+}
+```
+
+---
+
+### 7. 安全性与访问控制
+
+#### 添加基础认证
+
+**方法 A: Nginx 层面**
+```bash
+# 创建密码文件
+sudo apt install apache2-utils -y
+sudo htpasswd -c /etc/nginx/.htpasswd admin
+```
+Nginx 配置:
+```nginx
+location / {
+    auth_basic "Restricted Access";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+    
+    proxy_pass http://localhost:8501;
+    # ... 其他代理设置
+}
+```
+
+**方法 B: Streamlit 应用层面**
+安装 `streamlit-authenticator`:
+```bash
+pip install streamlit-authenticator
+```
+在 `superstore_dashboard.py` 开头添加:
+```python
+import streamlit_authenticator as stauth
+
+# 用户配置
+names = ['张三', '李四']
+usernames = ['zhangsan', 'lisi']
+passwords = ['password123', 'password456']
+
+hashed_passwords = stauth.Hasher(passwords).generate()
+
+authenticator = stauth.Authenticate(
+    names,
+    usernames,
+    hashed_passwords,
+    'some_cookie_name', # Cookie 名称
+    'some_signature_key', # 签名密钥
+    cookie_expiry_days=30 # Cookie 有效期
+)
+
+name, authentication_status, username = authenticator.login('登录', 'main')
+
+if not authentication_status:
+    st.error('用户名或密码错误' if username else '请输入您的用户名和密码')
+    st.stop()
+
+# ... 其余 Dashboard 代码
+st.write(f'欢迎 *{name}*')
+# ...
+```
+
+---
+
+### 📊 部署方案对比
+
+| 方案                | 成本         | 难度   | 速度 | 自定义度 | 推荐场景       |
+|---------------------|--------------|--------|------|----------|----------------|
+| **Streamlit Cloud** | 免费         | ⭐      | 最快 | 低       | 作品集、Demo   |
+| **iFrame 嵌入**     | 免费         | ⭐      | 极快 | 中       | 快速集成       |
+| **Docker (本地)**   | 免费         | ⭐⭐⭐   | 中   | 高       | 内部使用       |
+| **AWS/GCP/Azure**   | $10-50/月    | ⭐⭐⭐⭐ | 中   | 极高     | 生产环境       |
+| **自定义域名**      | $15-80/月    | ⭐⭐⭐⭐⭐| 慢   | 极高     | 企业级         |
+
+---
+
+### ✅ 部署检查清单
 
 部署前确认:
-- [ ] 所有依赖已列在 `requirements.txt`
-- [ ] 数据文件路径正确
-- [ ] 敏感信息 (密码、API密钥) 使用环境变量
-- [ ] 防火墙/安全组已开放必要端口
-- [ ] SSL证书已配置 (生产环境)
-- [ ] 已测试移动端响应式布局
-- [ ] 已添加访问控制 (如需要)
+- [ ] 所有依赖已列在 `requirements.txt`。
+- [ ] 数据文件路径正确。
+- [ ] 敏感信息 (密码、API 密钥) 使用环境变量管理。
+- [ ] 防火墙/安全组已开放必要端口。
+- [ ] 已为生产环境配置 SSL 证书。
+- [ ] 已测试移动端响应式布局。
+- [ ] 已根据需要添加访问控制。
 
 ---
 
-## 🆘 常见部署问题
+### 🆘 常见部署问题
 
-### Q1: Streamlit Cloud部署后显示"Error loading app"
-**A**: 检查 `requirements.txt` 是否包含所有依赖,确保Python版本兼容 (建议3.8-3.10)。
+**Q1: Streamlit Cloud 部署后显示 "Error loading app"**
+**A**: 检查 `requirements.txt` 是否包含所有依赖，并确保 Python 版本兼容 (推荐 3.8-3.10)。
 
-### Q2: iFrame嵌入后显示空白
-**A**: 确保Dashboard URL包含 `?embed=true` 参数,且官网与Dashboard同为HTTPS或HTTP。
+**Q2: iFrame 嵌入后显示空白**
+**A**: 确保 Dashboard URL 包含 `?embed=true` 参数，且您的官网和 Dashboard 都使用 HTTPS。
 
-### Q3: Docker容器无法访问
-**A**: 检查端口映射 (`-p 8501:8501`) 和防火墙设置 (`sudo ufw allow 8501`)。
+**Q3: Docker 容器无法访问**
+**A**: 检查端口映射 (`-p 8501:8501`) 和服务器防火墙设置 (`sudo ufw allow 8501`)。
 
-### Q4: Nginx反向代理后WebSocket连接失败
-**A**: 确保Nginx配置包含 `proxy_set_header Upgrade` 和 `Connection "upgrade"`。
+**Q4: Nginx 反向代理后 WebSocket 连接失败**
+**A**: 确保 Nginx 配置包含 `proxy_set_header Upgrade` 和 `Connection "upgrade"` 这两行。
 
 ---
 
-## 📞 需要帮助?
+### 📞 需要帮助?
 
-如果在部署过程中遇到任何问题,欢迎联系技术支持。
+如果在部署过程中遇到任何问题，欢迎联系技术支持。
 
 ---
 
@@ -501,7 +967,7 @@ elif authentication_status == None:
 
 **🚀 祝您部署顺利!**
 
-*Make Your Dashboard Live, Empower Your Business*
+*让您的 Dashboard 上线，为您的业务赋能*
 
 </div>
 
